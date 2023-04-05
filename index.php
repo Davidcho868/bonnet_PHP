@@ -1,39 +1,20 @@
 <?php
-if ((include'variables.php') == TRUE) {
-    
-}
-if ((include'fonctions.php') == TRUE) {
-    
-}
-
-?>
+include_once "includes/header.php";?>
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Bonnet</title>
-</head>
-<body>
-    <h1>Vente de bonnet</h1>
-    <table>
-    <tr>
-            <th>Article</th>
-            <th>Prix TTC</th>
-            <th>Prix HT</th>
-            <th>Description</th>
-        </tr>
-    <?php 
+<section class='d-flex gap-5 align-items-center justify-content-center m-5'>
+<?php 
     foreach ($tabBonnet as $k => $v) {
-        displayBonnet($k, $v);
+        
+        if ($k<=2){
+            displayCardsBonnet($v);
+        }
+
         }
     ?>
-    </table>
-</body>
-</html>
+    </section>
+    <a href="list.php" class="btn btn-warning">Liste Complete</a>
+<?php
+
+include_once "includes/footer.php";
+?>
