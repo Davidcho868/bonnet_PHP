@@ -13,8 +13,8 @@ function displayBonnet(array $v): void
             } else {
                 echo 'class="blue"';
             }
-            ?>><?php echo $v[1]. "€"; ?></td>
-            <td><?php echo number_format($v[1]/1.2, 2) ; ?></td>
+            ?>><?php echo $v[1]. "€ TTC"; ?></td>
+            <td><?php echo number_format($v[1]/1.2, 2). "€ HT" ; ?></td>
             <td><?php echo $v[2]; ?></td>
             
         </tr> <?php
@@ -27,8 +27,8 @@ function displayCardsBonnet(array $v): void
   <img src="<?php echo $v[3]; ?>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><?php echo $v[0]; ?></h5>
-    <p class="card-text"><?php echo $v[1]. "€"; ?></p>
-    <p class="card-text"><?php echo number_format($v[1]/1.2, 2) ; ?></p>
+    <p class="card-text"><?php echo $v[1]. "€ TTC"; ?></p>
+    <p class="card-text"><?php echo number_format($v[1]/1.2, 2). "€ HT" ; ?></p>
     <p class="card-text"><?php echo $v[2]; ?></p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
