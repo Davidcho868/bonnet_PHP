@@ -1,5 +1,4 @@
-<?php
-require_once "includes/header.php";?>
+
 
 <h1>Vente de bonnet</h1>
     <table class="table">
@@ -8,18 +7,16 @@ require_once "includes/header.php";?>
             <th>Prix TTC</th>
             <th>Prix HT</th>
             <th>Description</th>
+            <th>Panier</th>
         </tr>
     <?php 
-    foreach ($tabBonnet as $v) {
-        displayBonnet($v);
+
+    foreach ($tabBonnet as $id => $v) {
+        displayBonnet($v, $id);
         }
     ?>
     </table>
-    <?php
-require_once "includes/footer.php";
 
-
-?>
 
 
 
