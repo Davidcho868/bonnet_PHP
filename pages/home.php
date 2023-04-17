@@ -6,7 +6,7 @@
     foreach ($tabBonnet as $k => $v) {
         
         if ($k<=2){
-            displayCardsBonnet($v);
+            displayCardsBonnet($v, $k);
         }
 
         }

@@ -21,7 +21,7 @@ function displayBonnet(array $v, int $id): void
         </tr> <?php
 }
 
-function displayCardsBonnet(array $v): void
+function displayCardsBonnet(array $v, int $id): void
 {
 ?>
 <div class="card" style="width: 18rem;">
@@ -31,7 +31,7 @@ function displayCardsBonnet(array $v): void
     <p class="card-text"><?php echo $v[1]. "€ TTC"; ?></p>
     <p class="card-text"><?php echo number_format($v[1]/1.2, 2). "€ HT" ; ?></p>
     <p class="card-text"><?php echo $v[2]; ?></p>
-    <a href="" class="btn btn-primary">Ajouter au panier</a>
+    <a href="?page=panier&id=<?php echo $id; ?>" class="btn btn-primary">Ajouter au panier</a>
   </div>
 </div>
 <?php
