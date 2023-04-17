@@ -63,6 +63,9 @@ if (isset($_POST['username'])) {
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="?page=panier">Panier</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="?page=formulaire">Nous contacter</a>
+        </li>
         <?php
         if (isset($_SESSION['username'])) {
           ?>
