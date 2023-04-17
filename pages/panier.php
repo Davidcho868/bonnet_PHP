@@ -54,13 +54,13 @@ if (isset($_GET['id'])) {
 $total = 0.0;
 foreach ($_SESSION['panier'] as $id => $quantite) {
     $tabBonnets = $tabBonnet[$id];
-    $price = $tabBonnets[1] * $quantite;
+    $price = $tabBonnets->getPrice() * $quantite;
     $total += $price;
     ?>
         <tr>
             <td><?= $id; ?></td>
-            <td><?= $tabBonnets[0]; ?></td>
-            <td><?= number_format($tabBonnets[1], 2, ',', ' '); ?>€</td>
+            <td><?= $tabBonnets->getName(); ?></td>
+            <td><?= number_format($tabBonnets->getPrice(), 2, ',', ' '); ?>€</td>
             <td>
             <a href="?page=panier&id=<?= $id; ?>">+</a>
             <?= $quantite; ?>

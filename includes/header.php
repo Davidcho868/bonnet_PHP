@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'autoload.php';
 include 'variables.php';
 include 'fonctions.php';
 
