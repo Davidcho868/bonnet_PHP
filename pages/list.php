@@ -64,7 +64,7 @@ if (!empty($_POST['size'])) {
         <label for="maxPrice" class="form-label">Prix maximum</label>
         <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="<?= $maxPrice; ?>">
     </div>
-    <div class="mb-3">
+    <div class="d-row mt-4">
         <label for="material" class="form-label">Matière</label>
         <select name="material" id="material">
             <option value="">Choisissez une matière</option>
@@ -79,7 +79,7 @@ if (!empty($_POST['size'])) {
             ?>
         </select>
     </div>
-    <div class="mb-3">
+    <div class="d-row mt-4">
         <label for="size" class="form-label">Taille</label>
         <select name="size" id="size">
             <option value="">Choisissez une taille</option>
