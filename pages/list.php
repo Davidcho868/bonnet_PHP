@@ -1,53 +1,7 @@
 <?php
 $bonnetFilter = $tabBonnet;
-$minPrice = null;
-$maxPrice = null;
-$material = null;
-$size = null;
 
-if (!empty($_POST['minPrice'])) {
-    $minPrice = floatval($_POST['minPrice']);
-
-    $bonnetFilter = array_filter(
-        $bonnetFilter,
-        function (Beanie $beanie) use ($minPrice) {
-            return $beanie->getPrice() >= $minPrice;
-        }
-    );
-}
-
-if (!empty($_POST['maxPrice'])) {
-    $maxPrice = floatval($_POST['maxPrice']);
-
-    $bonnetFilter = array_filter(
-        $bonnetFilter,
-        function (Beanie $beanie) use ($maxPrice) {
-            return $beanie->getPrice() <= $maxPrice;
-        }
-    );
-}
-
-if (!empty($_POST['material'])) {
-    $material = trim($_POST['material']);
-
-    $bonnetFilter = array_filter(
-        $bonnetFilter,
-        function (Beanie $beanie) use ($material) {
-            return in_array($material, $beanie->getMaterials());
-        }
-    );
-}
-
-if (!empty($_POST['size'])) {
-    $size = trim($_POST['size']);
-
-    $bonnetFilter = array_filter(
-        $bonnetFilter,
-        function (Beanie $beanie) use ($size) {
-            return in_array($size, $beanie->getSizes());
-        }
-    );
-}
+$bonnetFilter = new Filtre($tabBonnet, $_POST);
 
 
 
@@ -58,11 +12,11 @@ if (!empty($_POST['size'])) {
 <form class="d-flex gap-3 align-item-center" action="" method="post">
     <div class="mb-3">
         <label for="minPrice" class="form-label">Prix minimum</label>
-        <input type="number" class="form-control" id="minPrice" name="minPrice" value="<?= $minPrice; ?>">
+        <input type="number" class="form-control" id="minPrice" name="minPrice" value="<?= $bonnetFilter->getMinPrice(); ?>">
     </div>
     <div class="mb-3">
         <label for="maxPrice" class="form-label">Prix maximum</label>
-        <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="<?= $maxPrice; ?>">
+        <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="<?= $bonnetFilter->getMaxPrice(); ?>">
     </div>
     <div class="d-row mt-4">
         <label for="material" class="form-label">Matière</label>
@@ -71,7 +25,7 @@ if (!empty($_POST['size'])) {
             <?php
                 foreach (Beanie::AVAILABLE_MATERIALS as $value => $name) {
                 ?>
-                <option value="<?= $value; ?>" <?php if ($value == $material){
+                <option value="<?= $value; ?>" <?php if ($value == $bonnetFilter->getMaterial()){
                     echo 'selected';
                 } ?>><?= $name; ?></option>
                 <?php
@@ -86,7 +40,7 @@ if (!empty($_POST['size'])) {
             <?php
                 foreach (Beanie::AVAILABLE_SIZE as $name) {
                 ?>
-                <option value="<?= $name; ?>" <?php if ($name == $size){
+                <option value="<?= $name; ?>" <?php if ($name == $bonnetFilter->getSize()){
                     echo 'selected';
                 } ?>><?= $name; ?></option>
                 <?php
@@ -110,8 +64,8 @@ if (!empty($_POST['size'])) {
     </tr>
     <?php
 
-    foreach ($bonnetFilter as $id => $v) {
-        displayBonnet($v, $id);
+    foreach ($bonnetFilter->getResult() as $id => $beanie) {
+        displayBonnet($beanie, $id);
     }
     ?>
 </table>
