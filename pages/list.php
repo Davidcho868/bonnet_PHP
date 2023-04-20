@@ -1,9 +1,5 @@
 <?php
-$bonnetFilter = $tabBonnet;
-
 $bonnetFilter = new Filtre($tabBonnet, $_POST);
-
-
 
 ?>
 

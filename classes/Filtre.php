@@ -14,19 +14,19 @@ class Filtre
     protected ?string $size = null;
 
 
-    public function __construct(array $bonnetFilter, array $Filtre)
+    public function __construct(array $bonnetFilter, array $filtre)
     {
-        if (!empty($Filtre['minPrice'])) {
-            $this->minPrice = floatval($Filtre['minPrice']);
+        if (!empty($filtre['minPrice'])) {
+            $this->minPrice = floatval($filtre['minPrice']);
         }
-        if (!empty($Filtre['maxPrice'])) {
-            $this->maxPrice = floatval($Filtre['maxPrice']);
+        if (!empty($filtre['maxPrice'])) {
+            $this->maxPrice = floatval($filtre['maxPrice']);
         }
-        if (!empty($Filtre['material'])) {
-            $this->material = trim($Filtre['material']);
+        if (!empty($filtre['material'])) {
+            $this->material = trim($filtre['material']);
         }
-        if (!empty($Filtre['size'])) {
-            $this->size = trim($Filtre['size']);
+        if (!empty($filtre['size'])) {
+            $this->size = trim($filtre['size']);
         }
 
         $this->bonnetFilter = $this->apply($bonnetFilter);
