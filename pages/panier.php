@@ -1,42 +1,12 @@
 <?php
-if (!isset($_SESSION['panier'])) {
-    $_SESSION['panier'] = [];
-}
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $panier = $_SESSION['panier'];
+$panier = new Panier();
 
-    $mode = 'plus';
-    if (isset($_GET['mode'])) {
-        $mode = $_GET['mode'];
-    }
-
-    if (!isset($panier[$id])) {
-        $panier[$id] = 0;
-    }
-    switch ($mode){
-        case 'plus':
-            $panier[$id]++;
-            break;
-        case 'min':
-            $panier[$id]--;
-            break;
-        case 'delete':
-            $panier[$id] = 0;
-            break;
-    }
-
-    if (($panier[$id]) <= 0) {
-        unset($panier[$id]);
-    }
-    
-
-    $_SESSION['panier'] = $panier;
+$isPanierModified = $panier->handle($_GET);
+if ($isPanierModified){
     header('Location: ?page=panier');
-} elseif (isset($_GET['mode']) && $_GET['mode'] == 'empty') {
-    $_SESSION['panier'] = [];
 }
+
 ?>
 <table class='table'>
     <tr>
@@ -52,7 +22,7 @@ if (isset($_GET['id'])) {
 
 <?php
 $total = 0.0;
-foreach ($_SESSION['panier'] as $id => $quantite) {
+foreach ($panier->getContent() as $id => $quantite) {
     $tabBonnets = $tabBonnet[$id];
     $price = $tabBonnets->getPrice() * $quantite;
     $total += $price;
