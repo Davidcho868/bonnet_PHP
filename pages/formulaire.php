@@ -5,6 +5,12 @@ $formulaire = new Formulaire($_POST);
 
 
 if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+    $statement = $db->prepare('INSERT INTO contact (subject, email, content) VALUES (:subject, :email, :content)');
+    $statement->execute([
+        ':subject' => $formulaire->getSubject(),
+        ':email'   => $formulaire->getEmail(),
+        ':content' => $formulaire->getContent(),
+    ]);
 ?>
     <div class="alert alert-success" role="alert">
         Message envoyé

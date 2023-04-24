@@ -52,6 +52,12 @@ $tabBonnet = [
 ];
 
 
+$sql = 'SET foreign_key_checks = 0;
+TRUNCATE TABLE beanies;
+SET foreign_key_checks = 1;';
+
+$db->exec($sql);
+
 $sql = 'INSERT INTO beanies 
 (name,
 description,
