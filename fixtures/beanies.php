@@ -92,6 +92,7 @@ foreach ($tabBonnet as $beanie) {
     $description = $beanie->getDescription();
     $price = $beanie->getPrice();
     $image = $beanie->getImage();
+    // var_dump($beanie);
     $sizes = json_encode($beanie->getSizes());
     $materials = json_encode($beanie->getMaterials());
 

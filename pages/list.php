@@ -1,5 +1,15 @@
 <?php
-$bonnetFilter = new Filtre($tabBonnet, $_POST);
+$statement = $db->query('SELECT * FROM beanies ORDER BY price');
+$beaniesData = $statement->fetchAll();
+
+$beanieFactory = new BeanieFactory();
+$beanies = [];
+foreach ($beaniesData as $beanieData) {
+    $beanies[] = $beanieFactory->create($beanieData);
+}
+
+
+$bonnetFilter = new Filtre($beanies, $_POST);
 
 ?>
 
@@ -60,8 +70,8 @@ $bonnetFilter = new Filtre($tabBonnet, $_POST);
     </tr>
     <?php
 
-    foreach ($bonnetFilter->getResult() as $id => $beanie) {
-        displayBonnet($beanie, $id);
+    foreach ($bonnetFilter->getResult() as $beanie) {
+        displayBonnet($beanie, $beanie->getId());
     }
     ?>
 </table>

@@ -22,8 +22,16 @@ if ($isPanierModified){
 
 <?php
 $total = 0.0;
+$beanieFactory = new BeanieFactory();
+$statement = $db->prepare('SELECT * FROM beanies WHERE id_beanie = :id_beanie');
 foreach ($panier->getContent() as $id => $quantite) {
-    $tabBonnets = $tabBonnet[$id];
+    $statement->bindValue(':id_beanie', $id);
+    $statement->execute();
+    $beanieData = $statement->fetch();
+    if (empty($beanieData)) {
+        continue;
+    }
+    $tabBonnets = $beanieFactory->create($beanieData);
     $price = $tabBonnets->getPrice() * $quantite;
     $total += $price;
     ?>
