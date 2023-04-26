@@ -76,6 +76,9 @@ class Beanie
 	}
 
 	public function getSizes(): array {
+		if (is_string($this->sizes)) {
+			$this->sizes = json_decode($this->sizes);
+		}
 		return $this->sizes;
 	}
 
@@ -108,6 +111,9 @@ class Beanie
 
 
 	public function getMaterials(): array {
+		if (is_string($this->materials)) {
+			$this->materials = json_decode($this->materials);
+		}
 		return $this->materials;
 	}
 	

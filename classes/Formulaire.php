@@ -2,11 +2,14 @@
 
 class Formulaire
 {
+    protected ?int $id;
     protected ?string $subject = '';
     protected ?string $email = '';
     protected ?string $content = '';
 
     protected array $errors = [];
+
+
 
 
     public function __construct(array $postData) {
@@ -20,6 +23,15 @@ class Formulaire
             $this->setContent(trim($postData['content']));
         }
     }
+
+    public function getId(): ?int {
+		return $this->id;
+	}
+
+	public function setId(?int $id): self {
+		$this->id = $id;
+		return $this;
+	}
 
     public function getSubject(): ?string {
 		return $this->subject;
